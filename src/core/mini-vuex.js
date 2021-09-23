@@ -1,11 +1,19 @@
 let Vue
 class Store{
     constructor(options) {
-        this.state = new Vue({
+        this._vm = new Vue({
             data() {
-                return options.state
+                return {
+                    $$state: options.state
+                }
             }
         })
+    }
+    get state() {
+        return this._vm._data.$$state
+    }
+    set state(v) {
+
     }
 }
 
