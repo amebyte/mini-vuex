@@ -13,7 +13,7 @@ class Store{
         return this._vm._data.$$state
     }
     set state(v) {
-
+        console.error('不能直接修改state')
     }
 }
 
