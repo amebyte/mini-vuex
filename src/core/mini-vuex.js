@@ -1,7 +1,11 @@
 let Vue
 class Store{
     constructor(options) {
-        this.$options = options
+        this.state = new Vue({
+            data() {
+                return options.state
+            }
+        })
     }
 }
 

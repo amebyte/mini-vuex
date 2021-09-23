@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    coboy
+    coboy{{$store.state.counter}}
   </div>
 </template>
 
