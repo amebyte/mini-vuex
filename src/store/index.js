@@ -9,12 +9,15 @@ export default new Vuex.Store({
   },
   mutations: {
     add(state) {
+        console.log('m', this)
       state.counter++
     }
   },
   actions: {
     add({commit}) {
+        
       setTimeout(() => {
+        console.log('aad', this)
         commit('add')
       }, 1000)
     }
