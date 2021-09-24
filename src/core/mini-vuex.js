@@ -4,7 +4,7 @@ class Store{
         this._vm = new Vue({
             data() {
                 return {
-                    $$state: options.state
+                    $$state: options.state 
                 }
             }
         })
