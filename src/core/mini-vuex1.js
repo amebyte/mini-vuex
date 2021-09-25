@@ -1,8 +1,8 @@
 let Vue
 class Store{
     constructor(options) {
-        this._mutations = options.mutations 
-        this._actions = options.actions 
+        this._mutations = options.mutations
+        this._actions = options.actions
         this._vm = new Vue({
             data() {
                 return {
@@ -22,7 +22,7 @@ class Store{
     commit(type, payload) {
         const mutation = this._mutations[type]
         if(!mutation) {
-            console.error('请正确提交')
+            console.error('错误的mutations名称')
             return
         }
         mutation(this.state, payload)
@@ -30,7 +30,7 @@ class Store{
     dispatch(type, payload) {
         const action = this._actions[type]
         if(!action) {
-            console.error('请正确提交')
+            console.error('错误的actions名称')
             return
         }
         action(this, payload)
@@ -41,6 +41,7 @@ function install(_vue) {
     Vue = _vue
     Vue.mixin({
         beforeCreate() {
+            console.log('this', this)
             if(this.$options.store) {
                 Vue.prototype.$store = this.$options.store
             }
