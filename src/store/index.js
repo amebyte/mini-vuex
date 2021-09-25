@@ -14,11 +14,11 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    add({commit}) {
+    add({ commit }, payload) {
         
       setTimeout(() => {
         console.log('aad', this)
-        commit('add')
+        commit('add', payload)
       }, 1000)
     }
   },
