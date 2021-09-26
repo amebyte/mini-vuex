@@ -23,7 +23,7 @@ export default new Vuex.Store({
     }
   },
   getters: {
-    doubleCounter(state) {
+    doubleCounter(state) {console.log('state', state)
       return state.counter * 2
     }
   }

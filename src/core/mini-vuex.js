@@ -5,15 +5,15 @@ class Store{
         this._actions = options.actions 
         
         this.getters = {}
-        // Object.keys(options.getters).forEach(key => {
-        //     Object.defineProperty(this.getters, key, {
-        //         get: () => options.getters[key](this.state)
-        //     })
-        // })
+        let computed = {}
         
         forEachGetters(options.getters, (fn, key) => {
+            computed[key] = () => fn(this.state)
             Object.defineProperty(this.getters, key, {
-                get: () => fn(this.state)
+                get: () => {
+                    console.log('this._vm[key]', this._vm[key])
+                    return this._vm[key]
+                }
             })
         })
 
@@ -22,7 +22,8 @@ class Store{
                 return {
                     $$state: options.state
                 }
-            }
+            },
+            computed
         })
         this.commit = this.commit.bind(this)
         this.dispatch = this.dispatch.bind(this)
