@@ -10,10 +10,7 @@ class Store{
         forEachGetters(options.getters, (fn, key) => {
             computed[key] = () => fn(this.state)
             Object.defineProperty(this.getters, key, {
-                get: () => {
-                    console.log('this._vm[key]', this._vm[key])
-                    return this._vm[key]
-                }
+                get: () =>  this._vm[key]
             })
         })
 
