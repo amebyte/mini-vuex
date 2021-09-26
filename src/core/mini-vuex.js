@@ -3,6 +3,14 @@ class Store{
     constructor(options) {
         this._mutations = options.mutations 
         this._actions = options.actions 
+        console.log('bbb')
+        this.getters = {}
+        Object.keys(options.getters).forEach(key => {
+            Object.defineProperty(this.getters, key, {
+                get: () => options.getters[key](this.state)
+            })
+        })
+        console.log('xxx')
         this._vm = new Vue({
             data() {
                 return {
@@ -13,7 +21,7 @@ class Store{
         this.commit = this.commit.bind(this)
         this.dispatch = this.dispatch.bind(this)
     }
-    get state() {
+    get state() {console.log('this._vm', this._vm)
         return this._vm._data.$$state
     }
     set state(v) {
