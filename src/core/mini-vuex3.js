@@ -5,18 +5,12 @@ class Store{
         this._actions = options.actions 
         
         this.getters = {}
-        // Object.keys(options.getters).forEach(key => {
-        //     Object.defineProperty(this.getters, key, {
-        //         get: () => options.getters[key](this.state)
-        //     })
-        // })
-        
-        forEachGetters(options.getters, (fn, key) => {
+        Object.keys(options.getters).forEach(key => {
             Object.defineProperty(this.getters, key, {
-                get: () => fn(this.state)
+                get: () => options.getters[key](this.state)
             })
         })
-
+        console.log('xxx')
         this._vm = new Vue({
             data() {
                 return {
@@ -60,10 +54,6 @@ function install(_vue) {
             }
         }
     })
-}
-
-const forEachGetters = (getters, cb) => {
-    Object.keys(getters).forEach(key => cb(getters[key], key))
 }
 
 export default { Store, install }
