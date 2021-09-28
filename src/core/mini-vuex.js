@@ -55,6 +55,8 @@ function install(_vue) {
         beforeCreate() {
             if(this.$options.store) {
                 Vue.prototype.$store = this.$options.store
+            } else if(this.$options.parent && this.$options.parent.$store) { // 确保每个组件得到的store都是相同的Store实例
+                Vue.prototype.$store = this.$options.parent.$store
             }
         }
     })
